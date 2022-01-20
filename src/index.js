@@ -6,16 +6,30 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger'
 
-
-
-const customerInfoReducer = (state = [], action) => {
-    switch (action.type) {
-        case 'ADD_CUSTOMER_INFO':
-            return [...state, action.payload];
-    }
-    return state;
+// pizza list reducer
+const pizzaListReducer = (state = [], action) => {
+  if (action.type === 'SET_PIZZA_LIST') {
+    //action.payload is already an array
+    return action.payload;
+  }
+  return state;
 }
 
+// customer info reducer
+const customerInfoReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_CUSTOMER_INFO':
+      return [...state, action.payload];
+  }
+  return state;
+}
+const ordersReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_ORDERS':
+            state = action.payload
+    }
+    return state
+}
 
 
 
@@ -24,7 +38,9 @@ const customerInfoReducer = (state = [], action) => {
 // Store
 const storeInstance = createStore (
     combineReducers({
-        customerInfoReducer
+        customerInfoReducer,
+        pizzaListReducer,
+        ordersReducer,
     }),
     applyMiddleware(logger)
 );
@@ -32,9 +48,9 @@ const storeInstance = createStore (
 
 
 
- 
+
 ReactDOM.render(
-    <Provider store={storeInstance}>
-        <App />
-    </Provider>, 
-    document.getElementById('root'));
+  <Provider store={storeInstance}>
+    <App />
+  </Provider>,
+  document.getElementById('root'));
