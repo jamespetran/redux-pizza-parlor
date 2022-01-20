@@ -19,12 +19,34 @@ function CustomerForm() {
         zip: ''
     });
 
+
     const handleInputChange = (event) => {
-        setCustomerInfo({
-            // spread operator handles all user inputs
-            ...customerInfo, [event.target.name]: event.target.value,
+        setCustomerInfo({ ...customerInfo,
+            [event.target.name]: event.target.value,
         });
     } // end handleInputChange
+
+
+    const onSubmit = (event) => {
+        event.preventDefault(event);
+        console.log('Adding customer information', customerInfo);
+
+        // send data to store
+        dispatch({
+            type: 'ADD_CUSTOMER_INFO',
+            payload: customerInfo
+        })
+
+        // clear inputs
+        setCustomerInfo({
+            name: '',
+            streetAddress: '',
+            city: '',
+            zip: ''
+        });
+
+        history.push('/checkout')
+    }
 
 
 
@@ -36,6 +58,7 @@ function CustomerForm() {
                 <input
                     type="text"
                     placeholder="Name"
+                    name="name"
                     value={customerInfo.name}
                     onChange={handleInputChange}    
                 />
@@ -45,6 +68,7 @@ function CustomerForm() {
                 <input
                     type="text"
                     placeholder="Street Address"
+                    name="streetAddress"
                     value={customerInfo.streetAddress}
                     onChange={handleInputChange}    
                 />
@@ -54,6 +78,7 @@ function CustomerForm() {
                 <input
                     type="text"
                     placeholder="City"
+                    name="city"
                     value={customerInfo.city}
                     onChange={handleInputChange}    
                 />
@@ -63,23 +88,41 @@ function CustomerForm() {
                 <input
                     type="text"
                     placeholder="Zip Code"
+                    name="zip"
                     value={customerInfo.zip}
                     onChange={handleInputChange}    
                 />
 
                 <br></br>
 
-                <input
-                    type="radio"
-                    name="pickup"
-                    value=""
-                />
+                <div>
+                    <input
+                        type="radio"
+                        id="pickup"
+                        name="select"
+                        value="Pickup"
+                        onChange={handleInputChange}
+                    />
+                    <label htmlFor="pickup">Pickup</label>
 
+                    <br></br>
+                
+                    <input
+                        type="radio"
+                        id="delivery"
+                        name="select"
+                        value="Delivery"
+                        onChange={handleInputChange}
+                    />
+                    <label htmlFor="delivery">Delivery</label>
+                </div>
+                
+
+                <br></br>
             </form>
-        </>
-        
+            <button onClick={onSubmit}>NEXT</button>
+        </>   
     )
-
 }
 
 
