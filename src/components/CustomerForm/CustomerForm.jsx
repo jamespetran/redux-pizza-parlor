@@ -72,7 +72,7 @@ function CustomerForm() {
                 <input
                     type="radio"
                     name="pickup"
-                    value=
+                    value=""
                 />
 
             </form>
