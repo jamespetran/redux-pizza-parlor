@@ -1,9 +1,24 @@
-import {useSelector} from 'reat-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {useEffect} from 'react';
+import axios from 'axios';
 
 function AdminPage(){
-
-    const customerList = useSelector(store => store.whateverItShallBeNamedByWhoWhomMustNotBeNamed)
-
+    const dispatch = useDispatch();
+    const customerList = useSelector(store => store.ordersReducer)
+    useEffect(() => {
+        GetOrders();
+    }, [])
+    const GetOrders = () => {
+        axios.get('/api/order').then(res => {
+            console.log('GETTING /api/order', res);
+            dispatch({
+                type: 'SET_ORDERS',
+                payload: res.data,
+            });
+        }).catch(err => {
+            console.error('FAILED GET /api/order', err)
+        })
+    }
     return(
         <table>
             <thead>
@@ -16,11 +31,11 @@ function AdminPage(){
             </thead>
             <tbody>
                 {customerList.map(customer => (
-                    <tr>
-                        <td>customer.customer_name</td>
-                        <td>customer.time</td>
-                        <td>customer.type</td>
-                        <td>customer.total</td>
+                    <tr key={customer.id}>
+                        <td>{customer.customer_name}</td>
+                        <td>{customer.time}</td>
+                        <td>{customer.type}</td>
+                        <td>{customer.total}</td>
                     </tr>
                 ))}
             </tbody>
