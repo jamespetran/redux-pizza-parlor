@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import {HashRouter as Router, Route, Link} from 'react-router-dom';
 import Checkout from '../Checkout/Checkout'
+import CustomerForm from '../CustomerForm/CustomerForm';
 
 function App() {
 
@@ -27,9 +28,12 @@ function App() {
         </Router>
 
       </header>
-  
-      <img src='images/pizza_photo.png' />
-      <p>Pizza is great.</p>
+      <Router>
+        <Route path="/customerForm">
+          <CustomerForm/>
+        </Route>
+      </Router>
+
   
     </div>
   );
