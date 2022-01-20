@@ -4,8 +4,6 @@ import { useHistory } from 'react-router-dom';
 
 function CustomerForm() {
     console.log('in CustomerForm');
-    // let x = document.getElementById("radio").value;
-    // console.log(x);
 
     // setup instances of dispatch and history
     // to be able to talk to state and advance the page to
@@ -18,27 +16,25 @@ function CustomerForm() {
         name: '',
         streetAddress: '',
         city: '',
-        zip: '',
-        getOrderOption: ''
+        zip: ''
     });
 
-    const [deliveryOptionsInfo, setDeliveryOptionsInfo] = useState
 
     const handleInputChange = (event) => {
-        setCustomerInfo({
-            // spread operator handles all user inputs
-            ...customerInfo, [event.target.name]: event.target.value,
+        setCustomerInfo({ ...customerInfo,
+            [event.target.name]: event.target.value,
         });
     } // end handleInputChange
 
+
     const onSubmit = (event) => {
         event.preventDefault(event);
-        console.log('Adding customer information', customerInfo, deliveryOptionsInfo);
+        console.log('Adding customer information', customerInfo);
 
         // send data to store
         dispatch({
             type: 'ADD_CUSTOMER_INFO',
-            payload: customerInfo, deliveryOptionsInfo
+            payload: customerInfo
         })
 
         // clear inputs
@@ -46,10 +42,10 @@ function CustomerForm() {
             name: '',
             streetAddress: '',
             city: '',
-            zip: '',
+            zip: ''
         });
 
-        history.push('/')
+        //history.push('/')
     }
 
 
@@ -62,6 +58,7 @@ function CustomerForm() {
                 <input
                     type="text"
                     placeholder="Name"
+                    name="name"
                     value={customerInfo.name}
                     onChange={handleInputChange}    
                 />
@@ -71,6 +68,7 @@ function CustomerForm() {
                 <input
                     type="text"
                     placeholder="Street Address"
+                    name="streetAddress"
                     value={customerInfo.streetAddress}
                     onChange={handleInputChange}    
                 />
@@ -80,6 +78,7 @@ function CustomerForm() {
                 <input
                     type="text"
                     placeholder="City"
+                    name="city"
                     value={customerInfo.city}
                     onChange={handleInputChange}    
                 />
@@ -89,37 +88,41 @@ function CustomerForm() {
                 <input
                     type="text"
                     placeholder="Zip Code"
+                    name="zip"
                     value={customerInfo.zip}
                     onChange={handleInputChange}    
                 />
 
                 <br></br>
 
+                <div>
                     <input
                         type="radio"
                         id="pickup"
                         name="select"
-                        value="pickup"
-                        checked={true}
+                        value="Pickup"
                         onChange={handleInputChange}
                     />
-                    <label for="pickup">Pickup</label>
+                    <label htmlFor="pickup">Pickup</label>
+
                     <br></br>
                 
                     <input
                         type="radio"
                         id="delivery"
                         name="select"
-                        value="delivery"
+                        value="Delivery"
+                        onChange={handleInputChange}
                     />
-                    <label for="delivery">Delivery</label>
-                    <br></br>
+                    <label htmlFor="delivery">Delivery</label>
+                </div>
+                
 
+                <br></br>
             </form>
-        </>
-        
+            <button onClick={onSubmit}>NEXT</button>
+        </>   
     )
-
 }
 
 
