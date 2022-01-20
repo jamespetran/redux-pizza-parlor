@@ -11,24 +11,15 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza</h1>
+      </header>
 
         <Router>
-          <div>
-            <ul>
-              <li>
-                <Link to="/checkout">Checkout</Link>
-              </li>
-            </ul>
+          
             <Route exact path="/checkout">
               <Checkout />
             </Route>
-
-          </div>
           
-        </Router>
-
-      </header>
-      <Router>
+    
         <Route path="/customerForm">
           <CustomerForm/>
         </Route>
