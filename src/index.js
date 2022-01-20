@@ -15,7 +15,13 @@ const customerInfoReducer = (state = [], action) => {
     }
     return state;
 }
-
+const ordersReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_ORDERS':
+            state = action.payload
+    }
+    return state
+}
 
 
 
@@ -24,7 +30,8 @@ const customerInfoReducer = (state = [], action) => {
 // Store
 const storeInstance = createStore (
     combineReducers({
-        customerInfoReducer
+        customerInfoReducer,
+        ordersReducer,
     }),
     applyMiddleware(logger)
 );

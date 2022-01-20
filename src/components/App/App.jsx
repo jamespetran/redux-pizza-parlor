@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import CustomerForm from '../CustomerForm/CustomerForm';
+import AdminPage from '../AdminPage/AdminPage'
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -11,10 +12,24 @@ function App() {
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza</h1>
       </header>
+
       <Router>
-        <Route path="/customerForm">
-          <CustomerForm/>
+        <Route path="/" exact>
+          <CustomerForm />
         </Route>
+
+        <Route path="/customerForm" exact>
+          <CustomerForm />
+        </Route>
+
+        <Route path="/checkout" exact>
+          <CustomerForm />
+        </Route>
+
+        <Route path="/admin" exact>
+          <AdminPage />
+        </Route>
+
       </Router>
 
   
