@@ -21,6 +21,7 @@ function PizzaList() {
 
   return (
     <div id="pizza-area">
+      <p>pizza list component</p>
       {allPizzas.map(pizza => {
         <PizzaItem pizza={pizza} />
       })}
