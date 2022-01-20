@@ -31,7 +31,17 @@ const ordersReducer = (state = [], action) => {
     return state
 }
 
-
+// cart reducer
+const cart = (state = [], action) => {
+  switch(action.type) {
+    case 'ADD_PIZZA':
+      return [...state, action.payload];
+    case 'REMOVE_PIZZA':
+      const removeID = action.payload.id;
+      return state
+        .map(item => item.id === action.payload.id)
+  }
+}
 
 
 

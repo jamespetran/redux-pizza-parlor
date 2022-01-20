@@ -29,7 +29,7 @@ function PizzaList() {
   return (
     <>
     {/* next button */}
-    <Link to='/customerForm'>Next!</Link>
+    <Link to='/customerForm'><button>Next!</button></Link>
     <div id="pizza-area" className="container">
       {allPizzas.map(pizza => {
         return <PizzaItem pizza={pizza} />
