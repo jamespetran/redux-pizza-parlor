@@ -45,7 +45,7 @@ function CustomerForm() {
             zip: ''
         });
 
-        //history.push('/')
+        history.push('/checkout')
     }
 
 
