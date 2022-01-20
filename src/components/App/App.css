@@ -3,7 +3,8 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: dodgerblue;
+  text-align: left;
   height: 70px;
   padding: 20px;
   color: white;
@@ -12,17 +13,4 @@
 
 .App-title {
   font-size: 2em;
-}
-.pizza-card{
-  padding: 1rem;
-  width: 15%;
-}
-.pizza-card img {
-  width: 100px;
-  height: 100px;
-}
-#pizza-area {
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
 }
