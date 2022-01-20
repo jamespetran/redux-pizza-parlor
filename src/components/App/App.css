@@ -13,3 +13,16 @@
 .App-title {
   font-size: 2em;
 }
+.pizza-card{
+  padding: 1rem;
+  width: 15%;
+}
+.pizza-card img {
+  width: 100px;
+  height: 100px;
+}
+#pizza-area {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+}
