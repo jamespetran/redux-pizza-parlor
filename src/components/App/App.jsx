@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import './App.css';
+import PizzaList from '../PizzaList/PizzaList'
 import CustomerForm from '../CustomerForm/CustomerForm';
 import AdminPage from '../AdminPage/AdminPage'
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 function App() {
-
+  
   return (
     <div className='App'>
       <header className='App-header'>
@@ -15,7 +16,7 @@ function App() {
 
       <Router>
         <Route path="/" exact>
-          <CustomerForm />
+          <PizzaList />
         </Route>
 
         <Route path="/customerForm" exact>
