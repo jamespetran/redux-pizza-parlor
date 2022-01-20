@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 
 function CustomerForm() {
     console.log('in CustomerForm');
+    // let x = document.getElementById("radio").value;
+    // console.log(x);
 
     // setup instances of dispatch and history
     // to be able to talk to state and advance the page to
@@ -16,8 +18,11 @@ function CustomerForm() {
         name: '',
         streetAddress: '',
         city: '',
-        zip: ''
+        zip: '',
+        getOrderOption: ''
     });
+
+    const [deliveryOptionsInfo, setDeliveryOptionsInfo] = useState
 
     const handleInputChange = (event) => {
         setCustomerInfo({
@@ -25,6 +30,27 @@ function CustomerForm() {
             ...customerInfo, [event.target.name]: event.target.value,
         });
     } // end handleInputChange
+
+    const onSubmit = (event) => {
+        event.preventDefault(event);
+        console.log('Adding customer information', customerInfo, deliveryOptionsInfo);
+
+        // send data to store
+        dispatch({
+            type: 'ADD_CUSTOMER_INFO',
+            payload: customerInfo, deliveryOptionsInfo
+        })
+
+        // clear inputs
+        setCustomerInfo({
+            name: '',
+            streetAddress: '',
+            city: '',
+            zip: '',
+        });
+
+        history.push('/')
+    }
 
 
 
@@ -69,11 +95,25 @@ function CustomerForm() {
 
                 <br></br>
 
-                <input
-                    type="radio"
-                    name="pickup"
-                    value=""
-                />
+                    <input
+                        type="radio"
+                        id="pickup"
+                        name="select"
+                        value="pickup"
+                        checked={true}
+                        onChange={handleInputChange}
+                    />
+                    <label for="pickup">Pickup</label>
+                    <br></br>
+                
+                    <input
+                        type="radio"
+                        id="delivery"
+                        name="select"
+                        value="delivery"
+                    />
+                    <label for="delivery">Delivery</label>
+                    <br></br>
 
             </form>
         </>
