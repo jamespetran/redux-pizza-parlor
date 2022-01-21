@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 function CustomerForm() {
     console.log('in CustomerForm');
@@ -28,7 +29,6 @@ function CustomerForm() {
 
 
     const onSubmit = (event) => {
-        event.preventDefault(event);
         console.log('Adding customer information', customerInfo);
 
         // send data to store
@@ -44,8 +44,6 @@ function CustomerForm() {
             city: '',
             zip: ''
         });
-
-        history.push('/checkout')
     }
 
 
@@ -120,7 +118,7 @@ function CustomerForm() {
 
                 <br></br>
             </form>
-            <button onClick={onSubmit}>NEXT</button>
+            <Link to="/checkout"><button onClick={onSubmit}>NEXT</button></Link>
         </>   
     )
 }
