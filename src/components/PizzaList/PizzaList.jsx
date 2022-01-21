@@ -8,7 +8,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 function PizzaList() {
   const dispatch = useDispatch();
   let allPizzas = useSelector(storeInstance => storeInstance.pizzaListReducer)
-  
+
   // axios call in function
   const getPizzas = () => {
     axios.get('/api/pizza')
@@ -28,13 +28,18 @@ function PizzaList() {
 
   return (
     <>
-    {/* next button */}
-    <Link to='/customerForm'><button>Next!</button></Link>
-    <div id="pizza-area" className="container">
-      {allPizzas.map(pizza => {
-        return <PizzaItem pizza={pizza} />
-      })}
-    </div>
+      {/* next button */}
+      <Link to='/customerForm'><button>Next!</button></Link>
+      <div id="pizza-area" className="container">
+        {allPizzas.map(pizza => {
+          return (
+          <PizzaItem
+            pizza={pizza}
+            key={pizza.id}
+          />
+          )
+        })}
+      </div>
 
     </>
   )
