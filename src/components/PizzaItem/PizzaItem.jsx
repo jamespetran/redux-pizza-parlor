@@ -9,30 +9,46 @@ import './PizzaItem.css'
 function PizzaItem({ pizza }) {
 
   //add to cart state
+  // cartReducer
+
+  const handleAdd = () => {
+    dispatch({
+      type: 'ADD_PIZZA',
+      payload: pizza
+    })
+  }
+
+  const handleRemove = () => {
+    dispatch({
+      type: 'REMOVE_PIZZA',
+      payload: pizza
+    })
+
+  }
 
   return (
     <Card key={pizza.id} className="pizza-card">
       <div className="pic-content">
-      <CardMedia
-        component="img"
-        image={pizza.image_path}
-        width="150"
-        alt={pizza.name}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {pizza.name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {pizza.description}
-        </Typography>
-        <div className="pizza-price">${pizza.price}</div>
-      </CardContent>
+        <CardMedia
+          component="img"
+          image={pizza.image_path}
+          width="150"
+          alt={pizza.name}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {pizza.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {pizza.description}
+          </Typography>
+          <div className="pizza-price">${pizza.price}</div>
+        </CardContent>
       </div>
       {/* add in conditional formatting to swap between these */}
       <div className="button-container">
-        <Button className="buy-button" variant="outlined">Add</Button>
-        <Button className="buy-button" variant="contained">Remove</Button>
+        <Button className="buy-button" variant="outlined" onClick={handleAdd}>Add</Button>
+        <Button className="buy-button" variant="contained" onClick={handleRemove}>Remove</Button>
       </div>
     </Card>
   )
