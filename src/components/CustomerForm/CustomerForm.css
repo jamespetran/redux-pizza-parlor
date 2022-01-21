@@ -1,0 +1,17 @@
+.customerForm {
+    text-align: left;
+    margin-left: 20px;
+    width: 300px;
+}
+
+.customerHeader {
+    text-align: left;
+    margin-left: 20px;
+    font-weight: 400; 
+}
+
+.nextBtn {
+    text-align: left;
+    margin-left: 20px;
+}
+
