@@ -18,8 +18,8 @@ function PizzaItem({ pizza }) {
   const dispatch = useDispatch();
   let cartPizzas = useSelector(storeInstance => storeInstance.cartReducer)
 
-
-  let [count, setCount] = useState(0)
+  // let count = 0;
+  // let [count, setCount] = useState(0)
   //add to cart state
   // cartReducer
 
@@ -38,22 +38,43 @@ function PizzaItem({ pizza }) {
   }
 
   // get pizza ID and compare to cart pizza ID
-  const checkCartQty = () => {
-    if (cartPizzas === []) {
-      setCount(0);
-    }
-    for (let cartPizza of cartPizzas) {
-      if (cartPizza.id === pizza.id) {
-        setCount(cartPizza.qty);
-        return;
-      } else { setCount(0); }
+  // const checkCartQty = () => {
+  //   if (cartPizzas.length === 0) {
+  //     console.log('cart empty')
+  //     count = 0;
+  //     return
+  //   }
+  //   for (let cartPizza of cartPizzas) {
+  //     if (cartPizza.id === pizza.id) {
+  //       console.log(pizza.id, ' <- id set to qty ->', cartPizza.qty)
+  //       count = cartPizza.qty;
+  //       console.log('count is', count)
+  //       return;
+  //     } else { count = 0; }
+  //   }
+  // }
+
+  // //set count in .find cartPizzas
+
+  // useEffect(checkCartQty, [cartPizzas]);
+
+  const count = () => {
+    let number = 0
+    if (cartPizzas.length === 0) {
+      // console.log('cart empty -> qty')
+      number = 0;
+      return number;
+    } else {
+      (cartPizzas.map(cartPizza => {
+        if (pizza.id === cartPizza.id) {
+          number = cartPizza.qty;
+          console.log(pizza.name,'cart qty:', number);
+        }
+      }))
+      return number;
     }
   }
 
-
-  useEffect(checkCartQty , [cartPizzas])
-
-  
   return (
     <Card className="pizza-card">
       <div className="pic-content">
@@ -77,7 +98,7 @@ function PizzaItem({ pizza }) {
 
         <Button className="buy-button" variant="contained" onClick={handleRemove}><RemoveCircleIcon /></Button>
         {/* cartPizzas */}
-        <Badge color="secondary" badgeContent={count}>
+        <Badge color="secondary" badgeContent={count()}>
           <ShoppingCartIcon />
         </Badge>
 
