@@ -1,51 +1,61 @@
-import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
-function Checkout (){
-    const dispatch = useDispatch();
-    const history = useHistory();
+function Checkout() {
+    const customerInfo = useSelector(store => store.customerInfoReducer)
 
-    const checkoutPizza = useSelector(store => store.checkoutReducer);
+    const onAddOrder = (evt) => {
+        evt.preventDefault();
 
-    const handleCheckout = () => {
-        dispatch({
-            type: 'EMPTY_PIZZA'
+        const orderInfo = {
+            name: '',
+            streetAddress: '',
+            city: '',
+            zip: ''
+        }
+
+        axios.post('/api/order', orderInfo)
+        .then(res => {
+            console.log('POST /pizza/order', res);
+
+            dispatchEvent({
+                type: 'UPDATE_ORDER_LIST',
+                payload: orderInfo
+            })
         })
-
-        history.push('/');
+        .catch (err => {
+            console.error('POST/pizza/order', err)
+        })
     }
-
- 
+    return (
+        <>
+        <h1>Prime Pizza</h1>
+        <h3>Step:3 Checkout</h3>
+           <p>{customerInfo.name}</p>
+           <p>{customerInfo.streetAddress}</p>
+           <p>{customerInfo.city}, {customerInfo.zip}</p>
+           <table>
+               <thead>
+                   <tr>
+                       <th>Customer Name:</th>
+                       <th>Cost:</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td>{customerInfo.name}</td>
+                   </tr>
+               </tbody>
+           </table>
+           <h2>Total: {}</h2>
+           <button>Checkout</button>
         
-    
-       return (
-           <div>
-              {/* <p>{Name}</p>
-              <p>{streetAddress}</p>
-              <p>{city} {zip}</p>
-              <p>{type}</p> */}
-              <table>
-                  <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Cost</th>
-                  </tr>
-                  </thead>
-              </table>
-
-              <button onClick={(handleCheckout)}>Checkout</button>
-
-           </div>
-
-       )
+        </>
        
-
+    )
 };
+
 
 export default Checkout;
 
-
-    
 
 
