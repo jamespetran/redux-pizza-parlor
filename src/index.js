@@ -19,7 +19,7 @@ const pizzaListReducer = (state = [], action) => {
 const customerInfoReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_CUSTOMER_INFO':
-      return [...state, action.payload];
+      return [action.payload];
   }
   return state;
 }

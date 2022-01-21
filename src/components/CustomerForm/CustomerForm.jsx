@@ -42,7 +42,8 @@ function CustomerForm() {
             name: '',
             streetAddress: '',
             city: '',
-            zip: ''
+            zip: '',
+            select: ''
         });
     }
 
