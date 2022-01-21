@@ -50,6 +50,8 @@ const cartReducer = (state = [], action) => {
       .map(item => (item.id === action.payload.id ? { ...item, quantity: item.quantity - 1 } : item))
       .filter(item => item.quantity > 0);
       //this remove code is from https://stackoverflow.com/a/53892395
+  } else if (action.type === 'EMPTY_CART') {
+    return [];
   }
   return state;
 }

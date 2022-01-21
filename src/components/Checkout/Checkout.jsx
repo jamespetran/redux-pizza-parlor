@@ -21,12 +21,12 @@ function Checkout ({ total }){
             pizzas: checkoutPizza
         }).then(res => {
             console.log('POST /pizza/order', res);
- //           dispatchEvent({
-   //             type: 'UPDATE_ORDER_LIST'
-     //       }) 
-       //     dispatch({
-         //       type: 'EMPTY_PIZZA'
-           // })
+           dispatch({
+               type: 'UPDATE_ORDER_LIST'
+           }) 
+           dispatch({
+               type: 'EMPTY_CART'
+           })
            history.push('/')
         })
         .catch (err => {
