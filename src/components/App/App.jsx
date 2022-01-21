@@ -19,7 +19,7 @@ function App() {
     } else {
       let newTotal = 0
       for (let pizza of cart) {
-        newTotal = Number(newTotal) + Number(pizza.price * pizza.qty);
+        newTotal = Number(newTotal) + Number(pizza.price * pizza.quantity);
       }
       console.log('cart NOT empty: total$=', newTotal)
       return newTotal;
