@@ -14,14 +14,14 @@ function App() {
 
   let total = () => {
     if (cart.length === 0) {
-      console.log('cart empty: total=', total)
+      console.log('cart empty: total$=0')
       return 0;
     } else {
       let newTotal = 0
       for (let pizza of cart) {
         newTotal = Number(newTotal) + Number(pizza.price * pizza.qty);
-        console.log('cart NOT empty: total=', total, newTotal)
       }
+      console.log('cart NOT empty: total$=', newTotal)
       return newTotal;
     }
   }
