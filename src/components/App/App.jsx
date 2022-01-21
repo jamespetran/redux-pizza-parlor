@@ -44,7 +44,9 @@ function App() {
         </Route>
 
         <Route path="/checkout" exact>
-          <Checkout />
+          <Checkout 
+            total = {total}
+          />
         </Route>
 
         <Route path="/admin" exact>

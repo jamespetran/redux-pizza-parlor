@@ -2,9 +2,9 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
+ 
 
-
-function Checkout (){
+function Checkout ({ total }){
     const dispatch = useDispatch();
     const history = useHistory();
     const checkoutPizza = useSelector(store => store.cartReducer);
@@ -17,7 +17,7 @@ function Checkout (){
             city: customerInfo.city,
             zip: customerInfo.zip,
             type: customerInfo.select,
-            total: 69420,
+            total: total(),
             pizzas: checkoutPizza
         }).then(res => {
             console.log('POST /pizza/order', res);
@@ -27,6 +27,7 @@ function Checkout (){
        //     dispatch({
          //       type: 'EMPTY_PIZZA'
            // })
+           history.push('/')
         })
         .catch (err => {
             console.error('POST/pizza/order', err)
@@ -53,7 +54,7 @@ function Checkout (){
                     </tr>
                 </tbody>
             </table>
-            <h2>Total: {}</h2>
+            <h2>Total: ${total()}</h2>
             <button onClick={handleCheckout}>Checkout</button>
         </>
     )
