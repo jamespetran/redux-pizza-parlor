@@ -67,7 +67,7 @@ function PizzaItem({ pizza }) {
     } else {
       (cartPizzas.map(cartPizza => {
         if (pizza.id === cartPizza.id) {
-          number = cartPizza.qty;
+          number = cartPizza.quantity;
           console.log(pizza.name,'cart qty:', number);
         }
       }))
