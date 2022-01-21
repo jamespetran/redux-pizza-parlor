@@ -47,7 +47,7 @@ function AdminPage(){
                         <TableCell align="right">
                             {customer.customer_name}
                         </TableCell>
-                    <TableCell align="right">{(customer.time)}</TableCell>
+                    <TableCell align="right">{dateFormatter(customer.time)}</TableCell>
                     <TableCell align="right">{customer.type}</TableCell>
                     <TableCell align="right">{customer.total}</TableCell>
                 </TableRow>
