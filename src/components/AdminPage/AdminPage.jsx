@@ -1,6 +1,14 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect} from 'react';
+import dateFormatter from './dateFormatter'
 import axios from 'axios';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 function AdminPage(){
     const dispatch = useDispatch();
@@ -20,26 +28,33 @@ function AdminPage(){
         })
     }
     return(
-        <table>
-            <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Time Oder Placed</td>
-                    <td>Type</td>
-                    <td>Cost</td>
-                </tr>
-            </thead>
-            <tbody>
-                {customerList.map(customer => (
-                    <tr key={customer.id}>
-                        <td>{customer.customer_name}</td>
-                        <td>{customer.time}</td>
-                        <td>{customer.type}</td>
-                        <td>{customer.total}</td>
-                    </tr>
+        <TableContainer component={Paper}>
+            <Table sx={{ maxWidth: 650 }} aria-label="simple table">
+            <TableHead>
+                <TableRow>
+                <TableCell align="right">Name</TableCell>
+                <TableCell align="right">Time Order Placed</TableCell>
+                <TableCell align="right">Type</TableCell>
+                <TableCell align="right">Cost</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+            {customerList.map(customer => (
+                    <TableRow
+                        key={customer.customer_name}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                        <TableCell align="right">
+                            {customer.customer_name}
+                        </TableCell>
+                    <TableCell align="right">{(customer.time)}</TableCell>
+                    <TableCell align="right">{customer.type}</TableCell>
+                    <TableCell align="right">{customer.total}</TableCell>
+                </TableRow>
                 ))}
-            </tbody>
-        </table>
+            </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
 export default AdminPage;
